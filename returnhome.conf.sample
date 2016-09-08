@@ -1,0 +1,17 @@
+[DEFAULT]
+LogFile = ./returnhome.log
+LogLevel = INFO
+
+[ACTION]
+success = sudo systemctl stop motion
+failed = sudo systemctl start motion
+service = motion
+
+[DEVICE0]
+IP = 192.168.188.6
+VerifyArp = True
+Mac = 8d:64:e41:6a:61:ff
+
+[DEVICE0]
+IP = 192.168.188.101
+VerifyArp = False
