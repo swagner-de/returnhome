@@ -27,7 +27,7 @@ IP = 192.168.188.6
 VerifyArp = True # Given MAC will be verified against ARP-cache
 Mac = 8d:64:e41:6a:61:ff
 
-[DEVICE0]
+[DEVICE1]
 IP = 192.168.188.101
 VerifyArp = False
 
