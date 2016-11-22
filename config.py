@@ -24,11 +24,14 @@ class Config:
         self.action_failed = self.cfg['ACTION']['failed']
         self.service = self.cfg['ACTION']['service']
 
+
     def _getDevices(self):
         sections = [section for section in self.cfg.sections() if re.search('DEVICE\d+', section)]
         for section in sections:
             yield Device(
                 self.cfg[section]['IP'],
                 self.cfg[section].getboolean('verifyArp'),
+                self.cfg[section].getint('RetryAttempts'),
+                self.cfg[section].getint('RetryInterval'),
                 self.cfg[section]['Mac'] if 'Mac' in self.cfg[section] else ''
             )

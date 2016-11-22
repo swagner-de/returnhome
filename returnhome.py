@@ -7,22 +7,11 @@ import logging
 
 from config import Config
 
-def check(config):
-    logger = logging.getLogger()
-    reachable = False
-    for device in config.devices:
-        if device.ping():
-            logger.info(('%s is pingable') % (device.ip))
-            if device.verify_arp:
-                if device.verifyArp():
-                    logger.info(('%s MAC verification successful') % (device.ip))
-                    reachable = True
-                else: logger.info(('%s MAC verification failed') % (device.ip))
-            else: reachable = True
-        else: logger.info(('%s is not reachable') % (device.ip))
-        if reachable: break
 
-    return reachable
+def check_all_devices(config):
+    for device in config.devices:
+        if device.check(): return True
+    return False
 
 def act(action, config):
     logger = logging.getLogger()
@@ -42,7 +31,7 @@ def check_service(service):
     return running
 
 def main(config):
-    reachable = check(config)
+    reachable = check_all_devices(config)
     service_running = check_service(config.service)
     if service_running == reachable:
         logger.info(('%s service %s') % ('Stopping' if service_running else 'Starting', config.service))
