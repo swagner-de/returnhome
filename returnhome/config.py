@@ -1,10 +1,11 @@
-import os
-import sys
-import re
-import logging
 import configparser
+import logging
+import os
+import re
+import sys
 
 from device import Device
+
 
 class Config:
 
@@ -17,8 +18,7 @@ class Config:
             sys.exit(1)
         self.loglevel = self.cfg['DEFAULT']['LogLevel']
         self.scriptdir = os.path.dirname(os.path.realpath(__file__))
-        self.logfile = (self.scriptdir + self.cfg['DEFAULT']['LogFile'].strip('.') if './' in self.cfg['DEFAULT']['LogFile'] else self.cfg['DEFAULT']['LogFile'])
-        #self.statefile = (self.scriptdir + self.cfg['DEFAULT']['StateFile']. strip('.') if './' in self.cfg['DEFAULT']['StateFile'] == '.' else self.cfg['DEFAULT']['StateFile'])
+        self.logfile = self.cfg['DEFAULT']['LogFile']
         self.devices = self._getDevices()
         self.action_success = self.cfg['ACTION']['success']
         self.action_failed = self.cfg['ACTION']['failed']

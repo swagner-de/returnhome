@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 
-import os
-import sys
-import subprocess
 import logging
+import os
+import subprocess
+import sys
 
 from config import Config
 
@@ -39,8 +39,8 @@ def main(config):
 
 
 if __name__ == '__main__':
-    
-    configfile = os.path.dirname(os.path.realpath(__file__)) + '/returnhome.conf'
+    os.chdir(os.path.dirname(os.path.realpath(__file__)) + '/..')
+    configfile = 'returnhome.conf'
     config = Config(configfile)
 
     logger = logging.getLogger()
