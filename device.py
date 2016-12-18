@@ -15,6 +15,7 @@ class Device:
         if verify_arp:
             self.mac = mac
         self.logger = logging.getLogger()
+        self.mac_failed = False
 
 
 
@@ -38,6 +39,7 @@ class Device:
     def check(self):
         for i in range(0, self.retryAttempts):
             if self.__check(): return True
+            print('retrying')
             if self.mac_failed: return False
             time.sleep(self.retryInterval)
         return False

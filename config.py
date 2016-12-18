@@ -31,7 +31,7 @@ class Config:
             yield Device(
                 self.cfg[section]['IP'],
                 self.cfg[section].getboolean('verifyArp'),
-                self.cfg[section].getint('RetryAttempts'),
                 self.cfg[section].getint('RetryInterval'),
+                self.cfg[section].getint('RetryAttempts'),
                 self.cfg[section]['Mac'] if 'Mac' in self.cfg[section] else ''
             )
